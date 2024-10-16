@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Notes Scroller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #note {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.2em;
+            max-width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="note">Loading...</div>
+
+<script>
+    const notes = [
+        "Mohamed du leste hver morgen for skolen",
+        "Mohamed du sørget for å møte opp i god tid før eksamen",
+        "Mohamed du betalte regningene med en gang du fikk dem",
+        "Mohamed du inkluderte hygieneartikler i budsjettet ditt",
+        "Mohamed du skrev om positive opplevelser i dagboken din",
+        
+    ];
+
+    function showRandomNote() {
+        const randomIndex = Math.floor(Math.random() * notes.length);
+        document.getElementById('note').innerText = notes[randomIndex];
+    }
+
+    setInterval(showRandomNote, 5000); // Change note every 5 seconds
+
+    window.onload = showRandomNote;
+</script>
+
+</body>
+</html>
