@@ -3,64 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamork</title>
+    <title>Flashcard Q&A</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        #note {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            font-size: 1.2em;
-            max-width: 80%;
             text-align: center;
+            margin-top: 50px;
+        }
+        .flashcard {
+            font-size: 24px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
+    <h1>Question/Answer Flashcards</h1>
+    <div class="flashcard" id="flashcard"></div>
 
-<div id="note">Loading...</div>
+    <script>
+        let questionsAndAnswers = [{ front: "What protocol do web browsers and web servers use at the application layer?", back: "HTTP (HyperText Transfer Protocol)" }, { front: "What is the most commonly used network model?", back: "TCP/IP" }, { front: "Why do networks function properly?", back: "Because different devices follow standardized rules (protocols)" }, { front: "What are network models?", back: "Sets of documents defining communication rules for devices" }, { front: "What allows devices based on the same network model to communicate?", back: "Following the same set of networking protocols" }, { front: "Can OSI and TCP/IP coexist in an organization’s network?", back: "Yes, both models can be used in different contexts" }, { front: "Why does HTTP use TCP?", back: "For error recovery and reliable data transmission" }, { front: "What do web servers send in their responses?", back: "HTTP messages containing headers" }, { front: "What do TCP headers include?", back: "Sequence numbers to ensure correct data order" }, { front: "What is the purpose of TCP sequence numbers?", back: "TCP uses sequence numbers to detect lost data." }, { front: "How does vSphere contribute to building resilient IT infrastructure?", back: "vSphere helps create resilient IT infrastructure by leveraging virtualization, making disaster recovery more manageable." }, { front: "What technology do backup solutions use in VMware for creating snapshots?", back: "Backup solutions in VMware use VMware snapshots to create a snapshot of virtual machines." }, { front: "What are the two important files created during a VMware snapshot?", back: "The two important files are delta.vmdk and vSphere files." }, { front: "What is recommended during periods when there is no high demand for a virtual machine regarding snapshots?", back: "It is recommended to consolidate snapshots during periods when there is no high demand for the virtual machine." }, { front: "Why is it a mistake for administrators to use snapshots as backups in vSphere?", back: "Snapshots are not intended as backups; they are more for preserving the state of a virtual machine at a specific point in time." }, { front: "What does vSphere vCenter allow administrators to do?", back: "vSphere vCenter allows centralized management of virtual machines and infrastructure." }, { front: "What happens to delta files from previous snapshots in vSphere if new snapshots are created?", back: "Delta files from previous snapshots become read-only if new snapshots are created." }];
 
-<script>
-    const notes = [
-        "Romanian Deadlift", 
-        " Toe Raises", 
-        "Mountain Climbers",
-        "Lunges",
-        "Tabletop plank with shoulder taps", 
-        "Tabletop planks with knee slides",
-        "Single leg Romanian Deadlift", 
-        " Sideplank with hip flexon",  
-        "Dead Bugz", 
-        "Side lying hip abductions",
-        "Plank",
-        "3-point-plank",
-        " Squat", 
-        " Bird Dog", 
-        "BearCrawl Bird Dog",
-        
+        // Function to display flashcards in random order
+        function displayFlashcard() {
+            const randomIndex = Math.floor(Math.random() * questionsAndAnswers.length);
+            const flashcard = questionsAndAnswers[randomIndex];
 
+            // Show the question
+            document.getElementById("flashcard").textContent = flashcard.front;
 
+            // After a delay, show the answer
+            setTimeout(() => {
+                document.getElementById("flashcard").textContent = flashcard.back;
 
-        
-    ];
+                // Wait for a few seconds before showing the next question
+                setTimeout(displayFlashcard, 6000);
+            }, 6000);
+        }
 
-    function showRandomNote() {
-        const randomIndex = Math.floor(Math.random() * notes.length);
-        document.getElementById('note').innerText = notes[randomIndex];
-    }
-
-    setInterval(showRandomNote, 10000); // Change note every 10 seconds
-
-    window.onload = showRandomNote;
-</script>
-
+        // Start displaying the flashcards
+        displayFlashcard();
+    </script>
 </body>
 </html>
