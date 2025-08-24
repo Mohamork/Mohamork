@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meldingsvisning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meldinger</h1>
+        <div id="message">Laster melding...</div>
+    </div>
+
+    <!-- Meldinger lagres her -->
+    <script id="messages-data" type="application/json">
+[
+    "Mohamed du tok notater da du så video om programmering",
+    "Mohamed du benyttet [-1] for å hente det siste elementet fra en liste",
+    "Mohamed du benyttet [-1] for å hente det siste elementet fra en tekst-streng",
+    "Mohamed du brukte with open() til å åpne filer trygt og enkelt",
+    "Mohamed du brukte for loop til å iterere over hver eneste linje",
+    "Mohamed du brukte continue til å hoppe over linjer med uviktig informasjon",
+    "Mohamed du brukte {} til å opprette en dictionary",
+    "Mohamed du brukte dictionary[key] til å hente ut verdien fra en dictionary. Verdien matcher med [key] som var nøkkelen",
+    "Mohamed du benyttet indeksering til å hente ut siste verdi fra en tekst-streng"
+]
+</script>
+
+    <script>
+        let messages = JSON.parse(document.getElementById('messages-data').textContent);
+        let shuffledMessages = [];
+        let currentIndex = 0;
+
+        function shuffleMessages() {
+            shuffledMessages = [...messages];
+            for (let i = shuffledMessages.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledMessages[i], shuffledMessages[j]] = [shuffledMessages[j], shuffledMessages[i]];
+            }
+            currentIndex = 0;
+        }
+
+        function showNextMessage() {
+            if (shuffledMessages.length === 0) {
+                document.getElementById('message').textContent = "Ingen meldinger tilgjengelig.";
+                return;
+            }
+            if (currentIndex >= shuffledMessages.length) {
+                shuffleMessages();
+            }
+            document.getElementById('message').textContent = shuffledMessages[currentIndex];
+            currentIndex++;
+        }
+
+        shuffleMessages();
+        showNextMessage();
+        setInterval(showNextMessage, 10000); // Bytt melding hvert 10 sekunder
+    </script>
+</body>
+</html>
