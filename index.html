@@ -16,7 +16,7 @@
         }
 
         .container {
-            background: white;
+            background: rgb(255, 255, 255);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -86,22 +86,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Meldinger</h1>
-            <div>
-                <span id="index-number">0</span>
-                <span id="previous-index"></span>
-            </div>
-        </div>
         <div id="category-bar"></div>
         <div id="message">Laster melding...</div>
+        <div class="header">
+    <span id="index-number">0</span> <!-- Nederst til venstre -->
+    <span id="previous-index">Forrige: </span> <!-- Nederst til høyre -->
+</div>
+
     </div>
 
     <script id="messages-data" type="application/json">
 {
   "Windows Server": [
     "Mohamed du benyttet Group Policy til å endre skrivebord bakgrunn",
-    "Mohamed du benyttet en iso fil til å installere et operativsystem"
+    "Mohamed du benyttet en iso fil til å installere et operativsystem",
+    "Mohamed du benyttet ipconfig til å se nettverkinformasjonen"
   ],
   "Python 3": [
     "Mohamed du benyttet input() til å la brukeren kommunisere med Python",
@@ -129,10 +128,15 @@
     "Mohamed du benyttet append() til å plassere tekst i en eksisterende liste",
     "Mohamed du brukte pop() til å ta vekk et element fra en eksisterende liste",
     "Mohamed du benyttet quit til å avslutte iPython",
-    "Mohamed du benyttet deactivate til å deaktivere et aktivt venv",
-    "Mohamed du benyttet from til å importe fra et bilbiotek",
+    "Mohamed du benyttet deactivate til å deaktivere et venv",
+    "Mohamed du benyttet from til å importere fra et bibliotek",
     "Mohamed du benyttet import til å importere en modul",
-    "Mohamed du benyttet elif til å gjøre en ny vurdering"
+    "Mohamed du benyttet elif til å gjøre en ny vurdering",
+    "Mohamed du benyttet f\" \" til å opprette en tekst-streng og inkludere en variabel raskt og enkelt"
+  ],
+  "Cisco IOS": [
+    "Mohamed du benyttet en til å navigere til privilege exec kommandoer",
+    "Mohamed du benyttet show ip route til å se ruterens ruting tabell"
   ]
 }</script>
 
