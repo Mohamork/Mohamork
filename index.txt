@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meldingsvisning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        #index-number {
+            background: #1b1b1b;
+            color: #d89b17;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        #previous-index {
+            margin-left: 10px;
+            background: #555;
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+
+        #category-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .category {
+            padding: 6px 12px;
+            background: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .category.active {
+            background: #1b1b1b;
+            color: #d89b17;
+            font-weight: bold;
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: center;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Meldinger</h1>
+            <div>
+                <span id="index-number">0</span>
+                <span id="previous-index"></span>
+            </div>
+        </div>
+        <div id="category-bar"></div>
+        <div id="message">Laster melding...</div>
+    </div>
+
+    <script id="messages-data" type="application/json">
+{
+  "Windows Server": [
+    "Mohamed du benyttet Group Policy til å endre skrivebord bakgrunn",
+    "Mohamed du benyttet en iso fil til å installere et operativsystem"
+  ],
+  "Python 3": [
+    "Mohamed du benyttet input() til å la brukeren kommunisere med Python",
+    "Mohamed du benyttet print() til å vise en melding",
+    "Mohamed du benyttet # for å legge til en beskrivelse",
+    "Mohamed du benyttet [] til å opprette en liste",
+    "Mohamed du benyttet [-1] til velge siste verdi fra en liste",
+    "Mohamed du tok notater da du så video om programmering",
+    "Mohamed du benyttet [-1] for å hente det siste elementet fra en liste",
+    "Mohamed du benyttet [-1] for å hente det siste elementet fra en tekst-streng",
+    "Mohamed du brukte with open() til å åpne filer trygt og enkelt",
+    "Mohamed du brukte en for loop til å iterere over hver eneste linje",
+    "Mohamed du brukte continue til å hoppe over linjer med uviktig informasjon",
+    "Mohamed du brukte {} til å opprette en dictionary",
+    "Mohamed du brukte dictionary[key] til å hente ut verdien fra en dictionary. Verdien matcher med [key] som var nøkkelen",
+    "Mohamed du benyttet indeksering til å hente ut siste verdi fra en tekst-streng",
+    "Mohamed du benyttet exit til å avslutte PowerShell",
+    "Mohamed du benyttet \" \" til å opprette tekst-strenger",
+    "Mohamed du brukte f.readlines() til å lagre hver linje i en liste",
+    "Mohamed du brukte type(variabel) til å printe ut datatypen til en variabel",
+    "Mohamed du benyttet as til å oprette et alias for filename",
+    "Mohamed du brukte exit til å avslutte bash",
+    "Mohamed du brukte : til å starte en kodeblokk",
+    "Mohamed du benyttet + til å slå sammen to tekst-strenger",
+    "Mohamed du benyttet append() til å plassere tekst i en eksisterende liste",
+    "Mohamed du brukte pop() til å ta vekk et element fra en eksisterende liste",
+    "Mohamed du benyttet quit til å avslutte iPython",
+    "Mohamed du benyttet deactivate til å deaktivere et aktivt venv",
+    "Mohamed du benyttet from til å importe fra et bilbiotek",
+    "Mohamed du benyttet import til å importere en modul",
+    "Mohamed du benyttet elif til å gjøre en ny vurdering"
+  ]
+}</script>
+
+    <script>
+        const data = JSON.parse(document.getElementById('messages-data').textContent);
+        let categories = Object.keys(data);
+        let currentCategoryIndex = categories.length > 0 ? 0 : null;
+        let shuffledMessages = [];
+        let currentMessageIndex = 0;
+        let previousIndex = null;
+
+        const categoryBar = document.getElementById('category-bar');
+        const messageElem = document.getElementById('message');
+        const indexElem = document.getElementById('index-number');
+        const prevIndexElem = document.getElementById('previous-index');
+
+        function renderCategories() {
+            categoryBar.innerHTML = "";
+            categories.forEach((cat, i) => {
+                const el = document.createElement('div');
+                el.textContent = cat;
+                el.className = "category" + (i === currentCategoryIndex ? " active" : "");
+                el.onclick = () => {
+                    currentCategoryIndex = i;
+                    updateCategory();
+                };
+                categoryBar.appendChild(el);
+            });
+        }
+
+        function updateCategory() {
+            if (currentCategoryIndex === null || categories.length === 0) {
+                messageElem.textContent = "Ingen meldinger tilgjengelig";
+                indexElem.textContent = "";
+                prevIndexElem.textContent = "";
+                return;
+            }
+            renderCategories();
+            shuffleMessages();
+            previousIndex = null;
+            showNextMessage();
+        }
+
+        function shuffleMessages() {
+            if (currentCategoryIndex === null) return;
+            const messages = data[categories[currentCategoryIndex]] || [];
+            shuffledMessages = [...messages];
+            for (let i = shuffledMessages.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledMessages[i], shuffledMessages[j]] = [shuffledMessages[j], shuffledMessages[i]];
+            }
+            currentMessageIndex = 0;
+        }
+
+        function showNextMessage() {
+            if (currentCategoryIndex === null || shuffledMessages.length === 0) {
+                messageElem.textContent = "Ingen meldinger tilgjengelig";
+                indexElem.textContent = "";
+                prevIndexElem.textContent = "";
+                return;
+            }
+            if (currentMessageIndex >= shuffledMessages.length) shuffleMessages();
+
+            const msg = shuffledMessages[currentMessageIndex];
+            const originalIndex = data[categories[currentCategoryIndex]].indexOf(msg);
+
+            messageElem.textContent = msg;
+            indexElem.textContent = originalIndex;
+            if (previousIndex !== null) {
+                prevIndexElem.textContent = `Forrige: ${previousIndex}`;
+            } else {
+                prevIndexElem.textContent = "";
+            }
+
+            previousIndex = originalIndex;
+            currentMessageIndex++;
+        }
+
+        // Piltaster for å bytte kategori
+        document.addEventListener("keydown", (e) => {
+            if (categories.length === 0) return;
+            if (e.key === "ArrowLeft") {
+                currentCategoryIndex = (currentCategoryIndex - 1 + categories.length) % categories.length;
+                updateCategory();
+            } else if (e.key === "ArrowRight") {
+                currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+                updateCategory();
+            }
+        });
+
+        updateCategory();
+        setInterval(showNextMessage, 10000);
+    </script>
+</body>
+</html>
