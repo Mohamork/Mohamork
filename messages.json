@@ -1,0 +1,40 @@
+{
+  "Windows Server": [
+    "Mohamed du benyttet Group Policy til å endre skrivebord bakgrunn",
+    "Mohamed du benyttet en iso fil til å installere et operativsystem"
+  ],
+  "Python 3": [
+    "Mohamed du benyttet input() til å la brukeren kommunisere med Python",
+    "Mohamed du benyttet print() til å vise en melding",
+    "Mohamed du benyttet # for å legge til en beskrivelse",
+    "Mohamed du benyttet [] til å opprette en liste",
+    "Mohamed du benyttet [-1] til velge siste verdi fra en liste",
+    "Mohamed du tok notater da du så video om programmering",
+    "Mohamed du benyttet [-1] for å hente det siste elementet fra en liste",
+    "Mohamed du benyttet [-1] for å hente det siste elementet fra en tekst-streng",
+    "Mohamed du brukte with open() til å åpne filer trygt og enkelt",
+    "Mohamed du brukte en for loop til å iterere over hver eneste linje",
+    "Mohamed du brukte continue til å hoppe over linjer med uviktig informasjon",
+    "Mohamed du brukte {} til å opprette en dictionary",
+    "Mohamed du brukte dictionary[key] til å hente ut verdien fra en dictionary. Verdien matcher med [key] som var nøkkelen",
+    "Mohamed du benyttet indeksering til å hente ut siste verdi fra en tekst-streng",
+    "Mohamed du benyttet exit til å avslutte PowerShell",
+    "Mohamed du benyttet \" \" til å opprette tekst-strenger",
+    "Mohamed du brukte f.readlines() til å lagre hver linje i en liste",
+    "Mohamed du brukte type(variabel) til å printe ut datatypen til en variabel",
+    "Mohamed du benyttet as til å oprette et alias for filename",
+    "Mohamed du brukte exit til å avslutte bash",
+    "Mohamed du brukte : til å starte en kodeblokk",
+    "Mohamed du benyttet + til å slå sammen to tekst-strenger",
+    "Mohamed du benyttet append() til å plassere tekst i en eksisterende liste",
+    "Mohamed du brukte pop() til å ta vekk et element fra en eksisterende liste",
+    "Mohamed du benyttet quit til å avslutte iPython",
+    "Mohamed du benyttet deactivate til å deaktivere et aktivt venv",
+    "Mohamed du benyttet from til å importere fra et bibliotek",
+    "Mohamed du benyttet import til å importere en modul",
+    "Mohamed du benyttet elif til å gjøre en ny vurdering"
+  ],
+  "Cisco IOS": [
+    "Mohamed du benyttet en til å navigere til privilege exec kommandoer"
+  ]
+}
