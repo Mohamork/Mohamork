@@ -99,10 +99,10 @@
 </div>
 
     </div>
-
+    <!-- Meldinger legges til her-->
     <script id="messages-data" type="application/json">
-{
-  "Windows Server": [
+
+        {"Windows Server": [
     "Mohamed du benyttet Group Policy til å endre skrivebord bakgrunn",
     "Mohamed du benyttet en iso fil til å installere et operativsystem",
     "Mohamed du benyttet ipconfig til å se nettverkinformasjonen",
@@ -168,7 +168,7 @@
     "Mohamed du benyttet print( \"budskap\") til å vise en melding",
     "Mohamed du benyttet in til å bekrefte eller avkrefte om en verdi eksisterer i en tekst",
     "Mohamed du benyttet \n\n for å legge inn to ekstra linjer i en tekst",
-    "Mohamed du benyttet \"tekst{placeholder1}{placeholder2}\".format(variabel1,variabel2} for å kombinere tekst og variabler på en linje.",
+    "Mohamed du benyttet \"tekst{placeholder1}{placeholder2}\".format(variabel1,variabel2) for å kombinere tekst og variabler på en linje.",
     "Mohamed du benyttet \"tekst{placeholder}\" for å legge til en variabel i en tekst",
     "Mohamed du benyttet format(var1) for å plassere en variabel i en tekst. Metoden er kompatibel med eldre og moderne utgaver av Python",
     "Mohamed du benyttet var = heltall for å senere utføre matematiske operasjoner",
@@ -230,9 +230,11 @@
     "Mohamed du benyttet Microsoft 365 Admin Panel til å undersøke Microsoft 365 Admin roller"
   ],
   "HTML": [
-    "Mohamed du benyttet <h1> Overskrift <\h1> til å opprette en overskrift  i en nettside"
-  ]
-}</script>
+    "Mohamed du benyttet <h1> Overskrift <\\h1> til å opprette en overskrift  i en nettside"
+  ] 
+}
+
+</script>
 
     <script>
         const data = JSON.parse(document.getElementById('messages-data').textContent);
